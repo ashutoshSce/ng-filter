@@ -1,0 +1,32 @@
+<section #filterQueryContainer class="filter-query-container" [ngClass]="{ 'valid': isValidQuery, 'show-filter-btn': manualUpdateOnly }" (click)="checkAndFocusTempInput($event)">
+    <ng-container *ngFor="let query of queries; let index = index; let last = last">
+        <app-single-filter-query [query]="query" [availableFilters]="availableFilters" [availableFiltersCache]="availableFiltersCache"
+            (showSuggestions)="showSuggestions($event)" (queryUpdated)="processForValueChange()" (removeQuery)="removeQuery($event)"></app-single-filter-query>
+
+        <!-- <div class="condition-container" *ngIf="!last" (click)="changeCondition(index)">
+            <span *ngIf="conditions[index] === 'and'" class="condition-display">&</span>
+            <span *ngIf="conditions[index] === 'or'" class="condition-display">||</span>
+        </div> -->
+    </ng-container>
+
+    <input #tempQueryInput class="filter-query temp-input" [ngClass]="{ 'show': showTempInput }" [size]="tempInputKey.length + 1"
+        [(ngModel)]="tempInputKey" (ngModelChange)="showSuggestions(tempInputKey)"
+        (focus)="showSuggestions('')" (blur)="showTempInput = false" />
+
+    <section class="controls-container">
+        <span class="close" (click)="clearAll()">X</span>
+        <button class="filter-btn" *ngIf="manualUpdateOnly" [ngClass]="{ 'disabled': !isValidQuery }" (click)="processForValueChange(true)">Filter</button>
+        <div class="clearfix"></div>
+    </section>
+
+    <div class="clearfix"></div>
+
+    <ul #suggestionsContainer class="filter-query suggestion-container" [ngClass]="{ 'hide': !showSuggestionsContainer }">
+        <li class="suggestion-list" *ngFor="let suggestion of suggestionsList" (click)="selectItem(suggestion.displayStr)">
+            {{suggestion.displayStr}}
+        </li>
+        <li class="suggestion-list no-suggestions-row" *ngIf="suggestionsList.length === 0">
+            No suggestions found...
+        </li>
+    </ul>
+</section>

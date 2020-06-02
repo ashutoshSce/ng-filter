@@ -1,0 +1,36 @@
+<section class="single-filter-query-container" [ngClass]="{ 'valid': query.isValid }">
+    <span class="close" (click)="triggerRemoveQuery()">X</span>
+    <div class="query-part-container key-part">
+        <input class="display-input" readonly placeholder="key" [ngClass]="{ 'show': !focusKeyInput }" [size]="query?.keyDisplayStr?.length || 3"
+            [(ngModel)]="query.keyDisplayStr" (click)="focusInput('key')" />
+        <input #keyInput class="search-input" placeholder="key" [ngClass]="{ 'show': focusKeyInput }" [size]="key?.length || 3"
+            [(ngModel)]="key" (ngModelChange)="showSuggestions(key, 'key')"
+            (focus)="onFocus('key')" (blur)="onBlur('key')" />
+    </div>
+
+    <div class="query-part-container condition-part">
+        <input class="display-condition search-input show" [size]="query?.condition?.displayStr?.length || defaultInputSize" readonly
+            [(ngModel)]="query.condition.displayStr"
+            (click)="showSuggestions('', 'condition')" />
+    </div>
+
+    <div class="query-part-container value-part" *ngIf="!query?.condition?.unary">
+        <input class="display-input" readonly placeholder="value" [ngClass]="{ 'show': !focusValueInput }" [size]="query?.valueDisplayStr?.length || 5"
+            [(ngModel)]="query.valueDisplayStr" (click)="focusInput('value')" />
+        <input #valueInput  class="search-input" placeholder="value" [ngClass]="{ 'show': focusValueInput }" [size]="value?.length || 5" 
+            [(ngModel)]="value" (ngModelChange)="showSuggestions(value, 'value')"
+            (focus)="onFocus('value')" (blur)="onBlur('value')" (keyup)="checkAndUpdatedQueryValue($event)" />
+    </div>
+
+    <ul class="suggestion-container" *ngIf="showSuggestionsContainer" (scroll)="handleSuggestionsScroll($event)">
+        <li class="suggestion-list" *ngFor="let suggestion of suggestionsList" (click)="selectItem(suggestion)">
+            {{suggestion.displayStr}}
+        </li>
+        <li class="suggestion-list loader-row" *ngIf="activeQueryPart === 'value' && availableFiltersCache[query?.keyDisplayStr]?.loading">
+            {{suggestionsList.length ? 'Loading more...' : 'Loading...'}}
+        </li>
+        <li class="suggestion-list no-suggestions-row" *ngIf="(suggestionsList.length === 0) && !availableFiltersCache[query?.keyDisplayStr]?.loading">
+            No suggestions found...
+        </li>
+    </ul>
+</section>

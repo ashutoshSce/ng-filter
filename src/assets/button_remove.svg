@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .cls-1{fill:#999}.cls-2{fill:none;stroke:#fff}
+        </style>
+    </defs>
+    <g id="button_remove" transform="translate(9979 17977)">
+        <circle id="Ellipse_134" cx="8" cy="8" r="8" class="cls-1" data-name="Ellipse 134" transform="translate(-9979 -17977)"/>
+        <path id="Path_1297" d="M-10041.8-17972.949l6 6" class="cls-2" data-name="Path 1297" transform="translate(68 1)"/>
+        <path id="Path_1298" d="M-10041.8-17972.949l6 6" class="cls-2" data-name="Path 1298" transform="rotate(90 -10005.345 -17935.499)"/>
+    </g>
+</svg>

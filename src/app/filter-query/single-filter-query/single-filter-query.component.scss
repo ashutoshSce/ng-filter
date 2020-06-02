@@ -1,0 +1,59 @@
+.single-filter-query-container {
+    background: rgb(245, 245, 245);
+    border: 1px solid rgb(228, 228, 228);
+    border-left: 2px solid red;
+    box-sizing: border-box;
+    float: left;
+    font-size: 14px;
+    height: 24px;
+    margin: 2px 2px;
+    max-height: 24px;
+    padding: 4px 5px 0px 3px;
+    position: relative;
+    &.valid {
+        border-left-color: green;
+    }
+    .close {
+        margin-right: 3px;
+        margin-top: 0px;
+    }
+    .query-part-container {
+        cursor: pointer;
+        float: left;
+        margin-right: 5px;
+        position: relative;
+        &.condition-part {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0px 4px;
+        }
+        &.value-part {
+            input {
+                font-weight: bold;
+            }
+        }
+        input {
+            background: transparent;
+            border: 0px;
+            cursor: pointer;
+            display: none;
+            padding: 0px;
+            min-width: 20px;
+            &:focus {
+                cursor: text;
+                outline: 0px;
+            }
+            &.disabled {
+                pointer-events: none;
+            }
+            &.show {
+                display: block !important;
+            }
+            &.display-condition {
+                min-width: 3px;
+            }
+        }
+    }
+    .suggestion-container {
+        top: calc(100% + 2px);
+    }
+}

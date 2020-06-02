@@ -1,0 +1,22 @@
+$stroke-color: gray;
+:host ::ng-deep {
+    .area-chart .area, .bar-chart .bar {
+        fill: rgb(190, 225, 245);
+        stroke: rgb(165, 215, 240);
+    }
+    .axis {
+        path, line {
+            stroke: $stroke-color;
+        }
+        text {
+            fill: $stroke-color;
+        }
+    }
+}
+.timeline-component-container {
+    border: 1px solid black;
+    border-top: 0px;
+    display: block;
+    height: 100%;
+    width: 100%;
+}

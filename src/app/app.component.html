@@ -1,0 +1,48 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <!-- <section>
+    <div>ABCD</div>
+    <div>ABCD</div>
+    <div>ABCD</div>
+    <div>ABCD</div>
+  </section> -->
+  <p>Manual Update -> False</p>
+  <app-filter-query
+    [availableFilters]="filters"
+    [(ngModel)]="filterQuery"
+    [manualUpdateOnly]="false"
+    (ngModelChange)="filterQueryUpdated()"
+  ></app-filter-query>
+  <p>Manual Update -> True</p>
+  <app-filter-query
+    [availableFilters]="filters"
+    [(ngModel)]="filterQuery"
+    [manualUpdateOnly]="true"
+    (ngModelChange)="filterQueryUpdated()"
+  ></app-filter-query>
+
+  <br />
+  <br />
+  <br />
+
+  <input [(ngModel)]="timelineConfig.dateFormat" />
+  <button (click)="setTimeFormat(timelineConfig.dateFormat)">
+    Set time format
+  </button>
+  <button (click)="setChartType('bar')">Set bar type</button>
+  <button (click)="setChartType('area')">Set area type</button>
+  <div style="width: 100%; height: 50px; position: relative;">
+    <app-timeline-graph
+      [data]="timelineData"
+      [config]="timelineConfig"
+      [(ngModel)]="timelineValue"
+      (ngModelChange)="timelineValueChange()"
+    ></app-timeline-graph>
+  </div>
+  <!-- <section>
+    <div>ABCD</div>
+    <div>ABCD</div>
+    <div>ABCD</div>
+    <div>ABCD</div>
+  </section> -->
+</div>
